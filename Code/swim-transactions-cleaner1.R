@@ -1,7 +1,7 @@
 #########################################################################################
 # Data Analysis 3 
 # Assignment 3 
-# Cleaning data on ticket prices for swimming pools in Albuquerque 
+# Cleaning data on ticket sales for swimming pools in Albuquerque 
 #########################################################################################
 
 
