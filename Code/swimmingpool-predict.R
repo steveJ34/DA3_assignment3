@@ -1,7 +1,7 @@
 #########################################################################################
 # Data Analysis 3 
 # Assignment 3 
-# Predicting ticket prices for swimming pools in Albuquerque 
+# Predicting ticket sales for swimming pools in Albuquerque 
 #########################################################################################
 
 
@@ -127,7 +127,7 @@ g1 <-ggplot(data=daily_agg[daily_agg$year==2015,], aes(x=date, y=QUANTITY)) +
   labs( x = "Date (day)", y="Daily ticket sales" ) +
   scale_color_discrete(name = "")
 g1
-#save_fig("ch18-figure-3a-swimmingpool-2015", output, "small")
+#save_fig("figure-3a-swimmingpool-2015", output, "small")
 
 g2<-ggplot(data=daily_agg[(daily_agg$year>=2010) & (daily_agg$year<=2014),], aes(x=date, y=QUANTITY)) +
   geom_line(size=0.2, color=color[1]) +
@@ -138,7 +138,7 @@ g2<-ggplot(data=daily_agg[(daily_agg$year>=2010) & (daily_agg$year<=2014),], aes
   labs( x = "Date (day)", y="Daily ticket sales" ) +
   scale_color_discrete(name = "")
 g2
-#save_fig("ch18-figure-3b-swimmingpool-2010-2014", output, "small")
+#save_fig("figure-3b-swimmingpool-2010-2014", output, "small")
 
 
 g3<-ggplot(data=daily_agg, aes(x=month_abb, y=QUANTITY)) +
@@ -146,7 +146,7 @@ g3<-ggplot(data=daily_agg, aes(x=month_abb, y=QUANTITY)) +
   labs( x = "Date (month)", y="Daily ticket sales" ) +
   geom_boxplot(color=color[1],outlier.color = color[4], outlier.alpha = 0.6, outlier.size = 0.4)
 g3
-#save_fig("ch18-figure-4a-swimmingpool-monthly", output, "small")
+#save_fig("figure-4a-swimmingpool-monthly", output, "small")
 
 g4<-ggplot(data=daily_agg, aes(x=dow_abb, y=QUANTITY)) +
   theme_bg() +
@@ -154,7 +154,7 @@ g4<-ggplot(data=daily_agg, aes(x=dow_abb, y=QUANTITY)) +
   geom_boxplot(color=color[1],outlier.color = color[4], outlier.alpha = 0.6, outlier.size = 0.4)
   #geom_boxplot(color=color[1], outlier.shape = NA)
 g4
-#save_fig("ch18-figure-4b-swimmingpool-dow", output, "small")
+#save_fig("figure-4b-swimmingpool-dow", output, "small")
 
 # to check for interactions, look at the heatmap
 swim_heatmap <- 
@@ -168,7 +168,7 @@ swim_heatmap <-
     legend.title =element_text(size=6)
     )
 swim_heatmap
-#save_fig("ch18-figure-5-swim-heatmap", output, "large")
+#save_fig("figure-5-swim-heatmap", output, "large")
 
 # not in book
 #swim_heatmap_log <-
@@ -276,7 +276,7 @@ reg6 <- train(
 stargazer(reg2$finalModel, reg3$finalModel, reg4$finalModel, reg5$finalModel, 
           out=paste(output,"Ch18_swim_tsregs.txt",sep=""), type = "text", digits=2)
 stargazer(reg6$finalModel, 
-          out=paste(output,"Ch18_swim_tsregs2.txt",sep=""), type = "text", digits=2)
+          out=paste(output,"swim_tsregs2.txt",sep=""), type = "text", digits=2)
 
 # Get CV RMSE ----------------------------------------------
 
@@ -352,8 +352,8 @@ g_predictions_rmse<- ggplot(rmse_monthly, aes(x = month, y = RMSE_norm)) +
   labs( tite = "Figure 6: Prediction RMSE per Month",x = "Date (month)", y="RMSE (normalized by monthly sales)" ) +
     theme_bg() 
 g_predictions_rmse
-#save_fig("ch18_swim_predictions_rmse", output, "small")
-save_fig("ch18-figure-7b-swim-predictions-rmse", output, "small", plot=g_predictions_rmse)
+#save_fig("swim_predictions_rmse", output, "small")
+save_fig("figure-7b-swim-predictions-rmse", output, "small", plot=g_predictions_rmse)
 
 g_predictions<-
   ggplot(data=data_holdout, aes(x=date, y=QUANTITY)) +
@@ -380,8 +380,8 @@ g_predictions<-
   guides(linetype = guide_legend(override.aes = list(size = 0.8))
          )
 g_predictions
-#save_fig("ch18_swim_predictions", output, "large")
-save_fig("ch18-figure-6-swim-predictions", output, "large", plot=g_predictions)
+#save_fig("swim_predictions", output, "large")
+save_fig("figure-6-swim-predictions", output, "large", plot=g_predictions)
 
 
 g_predictions_m <- ggplot(data=data_holdout %>% filter(month==8), aes(x=date, y=QUANTITY)) +
@@ -409,9 +409,6 @@ g_predictions_m <- ggplot(data=data_holdout %>% filter(month==8), aes(x=date, y=
   guides(linetype = guide_legend(override.aes = list(size = 0.6))
   )
 g_predictions_m
-#save_fig("ch18_swim_predictions_m", output, "small")
+#save_fig("swim_predictions_m", output, "small")
 save_fig("ch18-figure-7a-swim-predictions-m", output, "small", plot=g_predictions_m)
 
-#ch18-table-1-swim-rmse
-#ch18-table-2-cs-models-rmse
-#ch18-table-3-arima-folds
