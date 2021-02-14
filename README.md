@@ -1,3 +1,3 @@
 ### Data Analysis 
 #### Assignment 3 
-Predicting volumes of ticket salel for outdoor pools in Albuquerque. 
+Predicting volumes of ticket sales for outdoor pools in Albuquerque. 
